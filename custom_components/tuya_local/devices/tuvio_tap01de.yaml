@@ -1,17 +1,18 @@
 name: Tuvio TAP01DE Air Washer
 products:
-  - id: "cdtata05klpwbyu9"
-    manufacturer: "Tuvio"
+  - id: cdtata05klpwbyu9
+    manufacturer: Tuvio
+    model: TAP01DE
 entities:
   - entity: humidifier
     class: humidifier
     icon: mdi:air-humidifier
     dps:
       - id: 1
-        name: power
-        type: switch
+        name: switch
+        type: boolean
       - id: 13
-        name: target_humidity
+        name: humidity
         type: integer
         range:
           min: 40
@@ -30,7 +31,7 @@ entities:
         unit: "%"
       - id: 104
         type: boolean
-        name: state
+        name: action
         mapping:
           - dps_val: true
             value: "work"
@@ -91,16 +92,6 @@ entities:
         name: sensor
         type: integer
         unit: "h"
-
-  - entity: sensor
-    name: Fault
-    icon: mdi:alert
-    class: "problem"
-    category: diagnostic
-    dps:
-      - id: 22
-        type: integer
-        name: sensor
 
   - entity: sensor
     name: Filter life
@@ -165,7 +156,7 @@ entities:
         type: boolean
 
   - entity: light
-    translation_key: Night Light
+    name: Night Light
     category: config
     dps:
       - id: 5
