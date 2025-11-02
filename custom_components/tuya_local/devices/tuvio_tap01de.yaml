@@ -1,0 +1,189 @@
+name: Tuvio TAP01DE Air Washer
+products:
+  - id: "cdtata05klpwbyu9"
+    manufacturer: "Tuvio"
+entities:
+  - entity: humidifier
+    class: humidifier
+    icon: mdi:air-humidifier
+    dps:
+      - id: 1
+        name: power
+        type: switch
+      - id: 13
+        name: target_humidity
+        type: integer
+        range:
+          min: 40
+          max: 70
+        unit: "%"
+        mapping:
+          - constraint: mode
+            conditions:
+              - dps_val: true
+                invalid: false
+              - dps_val: false
+                invalid: true
+      - id: 14
+        name: current_humidity
+        type: integer
+        unit: "%"
+      - id: 104
+        type: boolean
+        name: state
+        mapping:
+          - dps_val: true
+            value: "work"
+          - dps_val: false
+            value: "idle"
+      - id: 108
+        type: boolean
+        name: mode
+        mapping:
+          - dps_val: false
+            value: "auto"
+          - dps_val: true
+            value: "normal"
+
+  - entity: switch
+    name: Sleep
+    icon: mdi:sleep
+    dps:
+      - id: 16
+        name: switch
+        type: boolean
+
+  - entity: select
+    name: Timer
+    icon: mdi:timer-outline
+    dps:
+      - id: 19
+        name: option
+        type: string
+        mapping:
+          - dps_val: "cancel"
+            value: "Off"
+          - dps_val: "1H"
+            value: "1 Hour"
+          - dps_val: "2H"
+            value: "2 Hours"
+          - dps_val: "3H"
+            value: "3 Hours"
+          - dps_val: "4H"
+            value: "4 Hours"
+          - dps_val: "5H"
+            value: "5 Hours"
+          - dps_val: "6H"
+            value: "6 Hours"
+          - dps_val: "7H"
+            value: "7 Hours"
+          - dps_val: "8H"
+            value: "8 Hours"
+          - dps_val: "9H"
+            value: "9 Hours"
+
+  - entity: sensor
+    name: Time remaining
+    icon: mdi:timer-sand
+    class: duration
+    dps:
+      - id: 20
+        name: sensor
+        type: integer
+        unit: "h"
+
+  - entity: sensor
+    name: Fault
+    icon: mdi:alert
+    class: "problem"
+    category: diagnostic
+    dps:
+      - id: 22
+        type: integer
+        name: sensor
+
+  - entity: sensor
+    name: Filter life
+    icon: mdi:air-filter
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 33
+        type: integer
+        name: sensor
+        unit: "h"
+
+  - entity: select
+    name: Fan speed
+    icon: mdi:fan
+    dps:
+      - id: 101
+        name: option
+        type: string
+        mapping:
+          - dps_val: "A"
+            value: "Auto"
+          - dps_val: "1"
+            value: "Low"
+          - dps_val: "2"
+            value: "Medium"
+          - dps_val: "3"
+            value: "High"
+          - dps_val: "4"
+            value: "Turbo"
+
+  - entity: switch
+    name: Vertical swing
+    icon: mdi:pan-vertical
+    dps:
+      - id: 102
+        name: switch
+        type: boolean
+
+  - entity: switch
+    name: UV
+    icon: mdi:radiation
+    dps:
+      - id: 103
+        name: switch
+        type: boolean
+
+  - entity: switch
+    name: Wet
+    icon: mdi:water-outline
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Drying
+    icon: mdi:hair-dryer
+    dps:
+      - id: 105
+        name: switch
+        type: boolean
+
+  - entity: light
+    translation_key: Night Light
+    category: config
+    dps:
+      - id: 5
+        type: boolean
+        name: switch
+      - id: 106
+        type: integer
+        name: brightness
+        range:
+          min: 1
+          max: 100
+        unit: "%"
+
+  - entity: switch
+    name: Beeper
+    icon: mdi:volume-high
+    category: config
+    dps:
+      - id: 109
+        name: switch
+        type: boolean
